@@ -44,7 +44,6 @@ public class RestCalculatrice {
 			@RequestParam(value = "a", required = true) int a,
 			@RequestParam(value = "b", required = true) int b) {
 
-
 		return new ResponseEntity<>(""+cal.multiplier(a, b), HttpStatus.OK);
 	}
 }
