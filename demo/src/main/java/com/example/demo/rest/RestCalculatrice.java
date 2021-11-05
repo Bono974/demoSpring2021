@@ -1,6 +1,7 @@
 package com.example.demo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class RestCalculatrice {
 	@Autowired
 	CalculatriceService cal;
 	
+	@Value("${calculatrice.marque}")
+	String marque;
 
 	@PostMapping(value = "/additionner", produces = { "application/json"})
 	public ResponseEntity<String> add(
@@ -45,5 +48,10 @@ public class RestCalculatrice {
 			@RequestParam(value = "b", required = true) int b) {
 
 		return new ResponseEntity<>(""+cal.multiplier(a, b), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/marque", produces = { "application/json"})
+	public ResponseEntity<String> marque(){
+		return new ResponseEntity<>(marque, HttpStatus.OK);
 	}
 }
